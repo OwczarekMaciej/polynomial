@@ -35,8 +35,8 @@ void test(const Poly& p1, const Poly& p2) {
 	testAddition(p1, p2);	
 	testSubtraction(p1, p2);	
 	testMultiplication(p1, p2);
-	//testNegation(p1, p2);
-	//testValue(p1, p2);
+	testNegation(p1, p2);
+	testValue(p1, p2);
 }
 
 void testAddition(const Poly& p1, const Poly& p2) {
@@ -63,12 +63,12 @@ void testMultiplication(const Poly& p1, const Poly& p2) {
 	cout << "Polynomial p1 multiplied by 2: " << p1 * 2 << endl;	
 }
 
-// void testNegation(const Poly& p1, const Poly& p2) {
-// 	cout << "Negation of polynomial p1: " << -p1 << endl;
-// 	cout << "Negation of polynomial p2: " << -p2 << endl;
-// }
+void testNegation(const Poly& p1, const Poly& p2) {
+	cout << "Negation of polynomial p1: " << -p1 << endl;
+	cout << "Negation of polynomial p2: " << -p2 << endl;
+}
 
-// void testValue(const Poly& p1, const Poly& p2) {
-// 	cout << "Value of polynomial p1 at point 1.5: " << p1(1.5) << endl;
-// 	cout << "Value of polynomial p2 at point 2.3: " << p2(2.3) << endl;
-// }
+void testValue(const Poly& p1, const Poly& p2) {
+	cout << "Value of polynomial p1 at point 1.5: " << p1(1.5) << endl;
+	cout << "Value of polynomial p2 at point 2.3: " << p2(2.3) << endl;
+}

@@ -1,6 +1,7 @@
 #include "Poly.h"
 #include <iostream>
 #include <map>
+#include <math.h>
 
 Poly::Poly(double value)
 {
@@ -21,28 +22,22 @@ std::ostream &operator<<(std::ostream &os, const Poly &rhs)
         if (it->second != 0.0)
         {
             if (!first_coef && it->second > 0)
-            {
-                os << " +";
-            }
-            if (it->second != 1)
-            {
-                os << " " << it->second;
-            }
+                os << " + ";
+            else if(it->second < 0)
+                os << " - ";
+            if (it->second != 1 && it->second != -1)
+                os << abs(it->second);
             if (it->first > 0)
             {
                 os << "x";
                 if (it->first > 1)
-                {
                     os << "^" << it->first;
-                }
             }
             first_coef = false;
         }
     }
     if (first_coef)
-    {
         os << "0";
-    }
 
     return os;
 }
@@ -93,11 +88,23 @@ Poly operator*(const Poly &lhs, const Poly &rhs)
 {
     Poly temp;
     for (auto it1 = lhs.coefficients.cbegin(); it1 != lhs.coefficients.cend(); it1++)
-    {
         for (auto it2 = rhs.coefficients.cbegin(); it2 != rhs.coefficients.cend(); it2++)
-        {
-            temp[it1->first + it2->second] += it1->first * it2->second;
-        }
-    }
+            temp[it1->first + it2->first] += it1->second * it2->second;
     return temp;
+}
+
+Poly operator-(const Poly &rhs)
+{
+    Poly temp;
+    for (auto it1 = rhs.coefficients.cbegin(); it1 != rhs.coefficients.cend(); it1++)
+        temp[it1->first] = -it1->second;
+    return temp;
+}
+
+double Poly::operator()(double point) const
+{
+    double value{};
+    for (auto it1 = this->coefficients.cbegin(); it1 != this->coefficients.cend(); it1++)
+        value += pow(point, it1->first) * it1->second;
+    return value;
 }

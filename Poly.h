@@ -12,10 +12,13 @@ class Poly
     friend Poly operator+(const Poly &lhs, const Poly &rhs);
     friend Poly operator-(const Poly &lhs, const Poly &rhs);
     friend Poly operator*(const Poly &lhs, const Poly &rhs);
+    friend Poly operator-(const Poly &rhs);
+
 public:
     Poly(double value = 0);
     ~Poly() = default;
     double &operator[](int exp);
+    double operator()(double point) const;
 
 private:
     std::map<int, double> coefficients;
