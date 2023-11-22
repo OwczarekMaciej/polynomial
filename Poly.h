@@ -16,7 +16,6 @@ class Poly
 
 public:
     Poly(double value = 0);
-    ~Poly() = default;
     double &operator[](int exp);
     double operator()(double point) const;
 
